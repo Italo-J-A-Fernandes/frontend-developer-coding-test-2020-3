@@ -5,6 +5,10 @@
   "repository": "https://github.com/Italo-J-A-Fernandes/frontend-developer-coding-test-2020-3.git",
   "author": "Italo Fernandes <italojafernandes@hotmail.com>",
   "license": "MIT",
+  "scripts": { 
+    "start": "webpack serve --mode development --hot", 
+    "build": "webpack --mode production" 
+  },
   "dependencies": {
     "@babel/cli": "^7.12.1",
     "react": "^17.0.1",
@@ -15,7 +19,12 @@
     "@babel/preset-env": "^7.12.1",
     "@babel/preset-react": "^7.12.5",
     "@babel/preset-typescript": "^7.12.1",
+    "@types/react": "^16.9.56",
+    "@types/react-dom": "^16.9.9",
+    "awesome-typescript-loader": "^5.2.1",
     "babel-loader": "^8.2.1",
+    "ts-loader": "^8.0.11",
+    "typescript": "^4.0.5",
     "webpack": "^5.5.1",
     "webpack-cli": "^4.2.0",
     "webpack-dev-server": "^3.11.0"
