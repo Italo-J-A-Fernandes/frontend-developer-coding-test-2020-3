@@ -1,5 +1,9 @@
 import React from 'react';
 
-export default function App() {
-  return <h1>Hello World!</h1>;
-}
+import RestaurantsList from './pages/RestaurantsList/index';
+
+const App: React.FC = () => {
+  return <RestaurantsList />;
+};
+
+export default App;
