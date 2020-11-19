@@ -1,5 +1,7 @@
 import { createGlobalStyle } from 'styled-components';
 
+import '../assets/fonts/fonts.css';
+
 export default createGlobalStyle`
   * {
     margin: 0;
@@ -12,9 +14,8 @@ export default createGlobalStyle`
     -webkit-font-smoothing: antialiased;
   }
 
-  border-style, input, button {
-    font: 16px sans-serif;
-
+  body, input, button {
+    font: 16px Helvetica-Nue, sans-serif;
   }
 
   button {
