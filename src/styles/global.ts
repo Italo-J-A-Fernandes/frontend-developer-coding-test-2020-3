@@ -25,6 +25,6 @@ export default createGlobalStyle`
   #app {
     max-width: 1440px;
     margin: 0 auto;
-    padding: 36px 64px;
+    padding: 36px 24px;
   }
 `;
