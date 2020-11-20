@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import {} from './styled';
 
-import api from '../../services/api';
+import client from '../../services/apollo';
+import { LISTAR_RESTAURANTES } from '../../services/graphql-querys';
 
 interface Restaurant {
   id: string;
@@ -12,8 +13,8 @@ const RestaurantsList: React.FC = () => {
   const [restaurants, setRestaurants] = useState<Restaurant[] | null>(null);
 
   useEffect(() => {
-    api.get('businesses/search?location=lasvegas').then(response => {
-      setRestaurants(response.data.businesses);
+    client.query({ query: LISTAR_RESTAURANTES }).then(response => {
+      setRestaurants(response.data.search.business);
     });
   }, []);
 
