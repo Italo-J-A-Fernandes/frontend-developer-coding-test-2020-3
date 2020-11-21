@@ -3,7 +3,7 @@ import { Header, ContainerListRest } from './styled';
 
 import client from '../../services/apollo';
 import api from '../../services/api';
-import { LISTAR_RESTAURANTES } from '../../services/graphql-querys';
+import { LIST_RESTAURANTS } from '../../services/graphql-querys';
 
 interface Restaurant {
   id: string;
@@ -27,9 +27,14 @@ const RestaurantsList: React.FC = () => {
   const [restaurants, setRestaurants] = useState<Restaurant[] | null>(null);
 
   useEffect(() => {
-    // client.query({ query: LISTAR_RESTAURANTES }).then(response => {
-    //   setRestaurants(response.data.search.business);
-    // });
+    // client
+    //   .query({
+    //     query: LIST_RESTAURANTS,
+    //     variables: { categories: '', price: '' },
+    //   })
+    //   .then(response => {
+    //     setRestaurants(response.data.search.business);
+    //   });
   }, []);
 
   return (

@@ -1,8 +1,8 @@
 import { gql } from '@apollo/client';
 
-export const LISTAR_RESTAURANTES = gql`
-  query {
-    search(location: "las-vegas") {
+export const LIST_RESTAURANTS = gql`
+  query Filters($categories: String, $price: String) {
+    search(location: "las-vegas", categories: $categories, price: $price) {
       business {
         id
         name
