@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Header } from './styled';
+import { Header, ContainerListRest } from './styled';
 
 import client from '../../services/apollo';
 import { LISTAR_RESTAURANTES } from '../../services/graphql-querys';
@@ -40,6 +40,15 @@ const RestaurantsList: React.FC = () => {
           eiusmod tempor incididunt ut labore et dolore magna aliqua.
         </p>
       </Header>
+      <main>
+        <ContainerListRest>
+          <h2>All Restaurants</h2>
+
+          <div>
+            <button type="button">Load More</button>
+          </div>
+        </ContainerListRest>
+      </main>
     </>
   );
 };
