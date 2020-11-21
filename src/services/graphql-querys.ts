@@ -22,7 +22,7 @@ export const LISTAR_RESTAURANTES = gql`
 
 export const LIST_CATEGORIES = gql`
   query {
-    categories(locale: "las-vegas") {
+    categories {
       category {
         title
       }
