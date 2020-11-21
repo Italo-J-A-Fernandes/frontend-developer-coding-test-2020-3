@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const Header = styled.header`
   display: flex;
   flex-direction: column;
-  padding: 42px 24px 44px;
+  padding: 42px 24px 0;
 
   > h1 {
     font-size: 32px;

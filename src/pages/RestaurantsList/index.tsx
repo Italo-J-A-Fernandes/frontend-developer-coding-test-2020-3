@@ -2,7 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { Header, ContainerListRest } from './styled';
 
 import client from '../../services/apollo';
-import { LISTAR_RESTAURANTES } from '../../services/graphql-querys';
+import api from '../../services/api';
+import {
+  LISTAR_RESTAURANTES,
+  LIST_CATEGORIES,
+} from '../../services/graphql-querys';
 
 interface Restaurant {
   id: string;
@@ -26,8 +30,12 @@ const RestaurantsList: React.FC = () => {
   const [restaurants, setRestaurants] = useState<Restaurant[] | null>(null);
 
   useEffect(() => {
-    client.query({ query: LISTAR_RESTAURANTES }).then(response => {
-      setRestaurants(response.data.search.business);
+    // client.query({ query: LISTAR_RESTAURANTES }).then(response => {
+    //   setRestaurants(response.data.search.business);
+    // });
+
+    client.query({ query: LIST_CATEGORIES }).then(response => {
+      console.log(response.data.categories.category);
     });
   }, []);
 
