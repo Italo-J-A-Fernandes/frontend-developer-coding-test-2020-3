@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import ReactStars from 'react-stars';
-import Skeleton from 'react-loading-skeleton';
 
 import { Header, ContainerListRest, ListRestaurants, RestItem } from './styled';
 import client from '../../services/apollo';
@@ -33,7 +32,6 @@ const RestaurantsList: React.FC = () => {
     client
       .query({
         query: LIST_RESTAURANTS,
-        variables: { categories: '', price: '' },
       })
       .then(response => {
         setRestaurants(response.data.search.business);
