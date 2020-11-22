@@ -1,13 +1,19 @@
 import React from 'react';
+import { useRouteMatch } from 'react-router-dom';
 import ReactStars from 'react-stars';
 
 import { Header, Map, Review, ListReview, Fotos } from './styled';
 
+interface RestaurantParams {
+  restaurant: string;
+}
+
 const RestaurantDetail: React.FC = () => {
+  const { params } = useRouteMatch<RestaurantParams>();
   return (
     <>
       <Header open>
-        <h1>Nome do Restaurante</h1>
+        <h1>{params.restaurant}</h1>
         <ReactStars
           value={3.5}
           color1="#dddddd"
