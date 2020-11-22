@@ -26,6 +26,7 @@ interface Restaurant {
 const RestaurantsList: React.FC = () => {
   const [restaurants, setRestaurants] = useState<Restaurant[] | null>(null);
   const [countRestaurants, setCountRestaurants] = useState(0);
+
   const wd = window.innerWidth;
 
   useEffect(() => {
