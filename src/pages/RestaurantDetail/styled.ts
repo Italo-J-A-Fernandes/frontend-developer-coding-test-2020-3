@@ -282,7 +282,6 @@ export const ListReview = styled.div<ListReviewProps>`
 export const Fotos = styled.div<FotosProps>`
   width: 25%;
   height: 228px;
-
   background: #d8d8d8;
   background-image: url(${props => `${props.img}`});
   background-repeat: no-repeat;

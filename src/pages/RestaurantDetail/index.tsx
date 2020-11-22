@@ -6,6 +6,7 @@ import { parseISO, format } from 'date-fns';
 import client from '../../services/apollo';
 import { Header, Map, Review, ListReview, Fotos } from './styled';
 import { NEW_ONE_RESTAURANT } from '../../services/graphql-querys';
+import MAPS from '../../components/Maps/index';
 
 interface RestaurantParams {
   restaurant: string;
@@ -83,7 +84,12 @@ const RestaurantDetail: React.FC = () => {
             </div>
           </Header>
           <Map map>
-            <div className="map" />
+            <div className="map">
+              <MAPS
+                lat={restaurant.coordinates.latitude}
+                long={restaurant.coordinates.longitude}
+              />
+            </div>
             <Fotos img={restaurant.photos} className="fotos" />
             <span className="endereco">
               {restaurant.location.formatted_address}
