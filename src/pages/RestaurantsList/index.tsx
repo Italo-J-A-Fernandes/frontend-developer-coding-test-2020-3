@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import ReactStars from 'react-stars';
 
-import { Header, ContainerListRest, ListRestaurants, RestItem } from './styled';
 import client from '../../services/apollo';
+import { Header, ContainerListRest, ListRestaurants, RestItem } from './styled';
 import { LIST_RESTAURANTS } from '../../services/graphql-querys';
 
 interface Restaurant {
