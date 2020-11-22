@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import ReactStars from 'react-stars';
+import Skeleton from 'react-loading-skeleton';
 
 import { Header, ContainerListRest, ListRestaurants, RestItem } from './styled';
 import client from '../../services/apollo';
@@ -23,15 +24,9 @@ interface Restaurant {
   rating: number;
 }
 
-interface ReactStarsTypes {
-  activeColor: string;
-  isHalf: boolean;
-  edit: boolean;
-  value: number;
-}
-
 const RestaurantsList: React.FC = () => {
   const [restaurants, setRestaurants] = useState<Restaurant[] | null>(null);
+  const [countRestaurants, setCountRestaurants] = useState(0);
   const wd = window.innerWidth;
 
   useEffect(() => {
@@ -44,6 +39,19 @@ const RestaurantsList: React.FC = () => {
         setRestaurants(response.data.search.business);
       });
   }, []);
+
+  async function handleMoreRestaurants() {
+    const total = countRestaurants + 20;
+    client
+      .query({
+        query: LIST_RESTAURANTS,
+        variables: { offset: total },
+      })
+      .then(response => {
+        setRestaurants([...restaurants, ...response.data.search.business]);
+        setCountRestaurants(countRestaurants + 20);
+      });
+  }
 
   return (
     <>
@@ -104,7 +112,9 @@ const RestaurantsList: React.FC = () => {
               ))}
           </ListRestaurants>
           <div>
-            <button type="button">Load More</button>
+            <button type="button" onClick={handleMoreRestaurants}>
+              Load More
+            </button>
           </div>
         </ContainerListRest>
       </main>
