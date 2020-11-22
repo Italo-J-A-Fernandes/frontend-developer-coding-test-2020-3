@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 interface HeaderProps {
   open: boolean;
@@ -184,7 +184,14 @@ export const ListReview = styled.div<ListReviewProps>`
     .imagem {
       width: 80px;
       height: 80px;
-      background-image: url(${props => `${props.img}`});
+      ${props =>
+        props.img
+          ? css`
+              background-image: url(${props.img});
+            `
+          : css`
+              background: #d8d8d8;
+            `}
       background-repeat: no-repeat;
       background-size: cover;
     }
@@ -275,6 +282,7 @@ export const ListReview = styled.div<ListReviewProps>`
 export const Fotos = styled.div<FotosProps>`
   width: 25%;
   height: 228px;
+
   background: #d8d8d8;
   background-image: url(${props => `${props.img}`});
   background-repeat: no-repeat;
