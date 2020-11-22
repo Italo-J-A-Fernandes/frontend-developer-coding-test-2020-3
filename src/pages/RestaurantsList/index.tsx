@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import ReactStars from 'react-stars';
 
 import { Header, ContainerListRest, ListRestaurants, RestItem } from './styled';
@@ -102,10 +103,11 @@ const RestaurantsList: React.FC = () => {
                         </span>
                       )}
                     </div>
-
-                    <button type="button">
-                      <span>Learn More</span>
-                    </button>
+                    <Link to={`/restaurant-detail/${restaurant.id}`}>
+                      <button type="button">
+                        <span>Learn More</span>
+                      </button>
+                    </Link>
                   </div>
                 </RestItem>
               ))}

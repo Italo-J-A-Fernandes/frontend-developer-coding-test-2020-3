@@ -22,6 +22,11 @@ export default createGlobalStyle`
     cursor: pointer;
   }
 
+  a {
+    text-decoration: none;
+    outline: none;
+  }
+
   #app {
     max-width: 1440px;
     margin: 0 auto;

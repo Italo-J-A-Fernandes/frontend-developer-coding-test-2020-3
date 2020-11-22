@@ -191,8 +191,12 @@ export const RestItem = styled.li<RestItemProps>`
     }
   }
 
+a {
   button {
+    display: flex;
+    width: 100%;
     padding: 16px 0;
+    justify-content: center;
     font-family: Helvetica-Nue;
     font-size: 14px;
     font-size: 0.7rem;
@@ -209,6 +213,8 @@ export const RestItem = styled.li<RestItemProps>`
       background: #002b56e0;
     }
   }
+}
+
 
   @media only screen and (min-width: 425px) and (max-width: 1440px) {
     .imagem {
@@ -284,7 +290,9 @@ export const RestItem = styled.li<RestItemProps>`
       }
     }
 
-    button {
+a {
+  button {
+    justify-content: flex-start;
     padding: 0;
     font-size: 16px;
     font-size: 0.8rem;
@@ -311,4 +319,5 @@ export const RestItem = styled.li<RestItemProps>`
       background: transparent;
     }
   }
+}
 `;
