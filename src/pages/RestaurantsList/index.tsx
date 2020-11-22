@@ -3,7 +3,14 @@ import { Link } from 'react-router-dom';
 import ReactStars from 'react-stars';
 
 import client from '../../services/apollo';
-import { Header, ContainerListRest, ListRestaurants, RestItem } from './styled';
+import {
+  Header,
+  ContainerListRest,
+  ListRestaurants,
+  RestItem,
+  Filter,
+  ButtonFilter,
+} from './styled';
 import { LIST_RESTAURANTS } from '../../services/graphql-querys';
 
 interface Restaurant {
@@ -62,6 +69,36 @@ const RestaurantsList: React.FC = () => {
           eiusmod tempor incididunt ut labore et dolore magna aliqua.
         </p>
       </Header>
+      <Filter>
+        <div>
+          <span>Filter By:</span>
+
+          <div className="checkbox">
+            <label htmlFor="open">
+              <input type="radio" name="open" id="open" checked={false} />
+              Open Now
+            </label>
+          </div>
+
+          <div className="dropdownPrice">
+            <span>All</span>
+            <div className="dropdown-contentPrice">
+              <button type="button">$$$$</button>
+            </div>
+          </div>
+
+          <div className="dropdown">
+            <span>All</span>
+            <div className="dropdown-content">
+              <button>Italian</button>
+            </div>
+          </div>
+        </div>
+
+        <ButtonFilter>
+          <span>clear all</span>
+        </ButtonFilter>
+      </Filter>
       <main>
         <ContainerListRest>
           <h2>All Restaurants</h2>
