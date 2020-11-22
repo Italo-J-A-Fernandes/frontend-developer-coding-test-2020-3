@@ -163,22 +163,6 @@ export const RestItem = styled.li<RestItemProps>`
     flex-grow: 1;
   }
 
-  .react-rater {
-    display: flex;
-    font-size: 1rem;
-    margin-bottom: 16px;
-    /* flex-grow: 1; */
-  }
-  .react-rater-star.is-disabled.is-active {
-    color: #002b56e0;
-  }
-  .react-rater-star.is-disabled{
-    color: #d4d4d4;
-  }
-  .react-rater-star.is-active-half:before {
-    color: #002b56e0;
-  }
-
   .restStatus {
     display: flex;
     justify-content: space-between;
@@ -260,7 +244,7 @@ export const RestItem = styled.li<RestItemProps>`
       overflow: hidden;
       height: 30px;
       white-space: nowrap;
-      margin-top: -7px;
+      /* margin-top: -7px; */
     }
 
     .imagem {
@@ -269,9 +253,22 @@ export const RestItem = styled.li<RestItemProps>`
       margin-bottom: 0px;
     }
 
+    .infoRest {
+      width: 60%;
+      margin-left: 12px;
+    }
+
     .react-rater {
       margin-bottom: 8px;
     }
+
+.categoryRest{
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  max-width: 64%;
+}
+
     .restStatus {
       margin-bottom: 15px;
 
@@ -285,11 +282,6 @@ export const RestItem = styled.li<RestItemProps>`
       > .status::before {
         display: none;
       }
-    }
-
-    .infoRest {
-      width: 60%;
-      margin-left: 12px;
     }
 
     button {

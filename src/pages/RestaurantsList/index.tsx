@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
-// import Rater from 'react-rater';
-import ReactStars from 'react-rating-stars-component';
+import ReactStars from 'react-stars';
 
 import { Header, ContainerListRest, ListRestaurants, RestItem } from './styled';
 import client from '../../services/apollo';
@@ -22,6 +21,13 @@ interface Restaurant {
   photos: string;
   price: string;
   rating: number;
+}
+
+interface ReactStarsTypes {
+  activeColor: string;
+  isHalf: boolean;
+  edit: boolean;
+  value: number;
 }
 
 const RestaurantsList: React.FC = () => {
@@ -67,14 +73,14 @@ const RestaurantsList: React.FC = () => {
                   <div className="infoRest">
                     <h3>{restaurant.name}</h3>
                     <ReactStars
-                      activeColor="#002b56e0"
-                      isHalf
+                      value={restaurant.rating}
+                      color1="#dddddd"
+                      color2="#002b56e0"
                       edit={false}
-                      value={2.5}
+                      half
                     />
-                    {/* <Rater total={5} rating={2.5} interactive={false} /> */}
                     <div className="restStatus">
-                      <span>
+                      <span className="categoryRest">
                         {`${restaurant.categories[0].title} - ${restaurant.price}`}
                       </span>
                       {wd <= 425 ? (
