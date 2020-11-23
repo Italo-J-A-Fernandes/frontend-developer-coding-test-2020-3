@@ -109,7 +109,13 @@ const RestaurantsList: React.FC = () => {
           <span>Filter By:</span>
           <div className="checkbox">
             <label htmlFor="open">
-              <input type="radio" name="open" id="open" checked={false} />
+              <input
+                type="radio"
+                name="open"
+                id="open"
+                defaultChecked={false}
+                onClick={() => setFilterOpenNow(true)}
+              />
               Open Now
             </label>
           </div>
