@@ -296,6 +296,22 @@ export const ListRestaurants = styled.ul`
 export const BntCloseModal = styled.div`
   display: flex;
   justify-content: flex-end;
+
+  button {
+    border: none;
+    background: transparent;
+
+    svg {
+      font-size: 30px;
+      color: #002b56;
+    }
+  }
+
+  @media only screen and (max-width: 504px) {
+    button {
+      margin: 16px;
+    }
+  }
 `;
 
 export const RestItem = styled.li<RestItemProps>`
@@ -365,7 +381,7 @@ export const RestItem = styled.li<RestItemProps>`
     }
   }
 
-a {
+
   button {
     display: flex;
     width: 100%;
@@ -387,7 +403,7 @@ a {
       background: #002b56e0;
     }
   }
-}
+
 
 
   @media only screen and (min-width: 425px) and (max-width: 1440px) {
@@ -464,7 +480,7 @@ a {
       }
     }
 
-a {
+
   button {
     justify-content: flex-start;
     padding: 0;
@@ -493,5 +509,4 @@ a {
       background: transparent;
     }
   }
-}
 `;

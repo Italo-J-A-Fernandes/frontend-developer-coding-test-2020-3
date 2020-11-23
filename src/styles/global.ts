@@ -20,7 +20,17 @@ export default createGlobalStyle`
     .ReactModalPortal{
       .ReactModal__Overlay{
         z-index: 1;
-        background-color: rgb(0, 0, 0, 0.75);
+        background-color: rgb(0, 0, 0, 0.75) !important;
+      }
+
+      @media only screen and (max-width: 504px) {
+        .ReactModal__Content{
+          top: 0 !important;
+          bottom: 0 !important;
+          left: 0 !important;
+          right: 0 !important;
+          padding: 0 !important;
+        }
       }
     }
   }

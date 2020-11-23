@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
 import ReactStars from 'react-stars';
 import ReactLoading from 'react-loading';
-
+import { FiXCircle } from 'react-icons/fi';
 import Modal from 'react-modal';
+
 import Detail from '../RestaurantDetail/index';
 
 import client from '../../services/apollo';
@@ -307,14 +307,12 @@ const RestaurantsList: React.FC = () => {
                         </span>
                       )}
                     </div>
-                    {/* <Link to={`/restaurant-detail/${restaurant.id}`}> */}
                     <button
                       type="button"
                       onClick={() => tomarCu(restaurant.id)}
                     >
                       <span>Learn More</span>
                     </button>
-                    {/* </Link> */}
                   </div>
                 </RestItem>
               ))}
@@ -344,7 +342,7 @@ const RestaurantsList: React.FC = () => {
       >
         <BntCloseModal>
           <button type="button" onClick={closeModal}>
-            close
+            <FiXCircle />
           </button>
         </BntCloseModal>
         <Detail id={idDetailRestaurant} />

@@ -1,18 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { useRouteMatch, Link } from 'react-router-dom';
 import ReactStars from 'react-stars';
 import { parseISO, format } from 'date-fns';
 import ReactLoading from 'react-loading';
-import { FiChevronLeft } from 'react-icons/fi';
 
 import client from '../../services/apollo';
 import { Header, Map, Review, ListReview, Fotos, Loading } from './styled';
 import { NEW_ONE_RESTAURANT } from '../../services/graphql-querys';
 import MAPS from '../../components/Maps/index';
 
-interface RestaurantParams {
-  restaurant: string;
-}
 interface RestaurantProps {
   name: string;
   id: string;
@@ -55,7 +50,6 @@ interface PropsDetail {
   id: string;
 }
 const RestaurantDetail: React.FC<PropsDetail> = ({ id }: PropsDetail) => {
-  // const { params } = useRouteMatch<RestaurantParams>();
   const [restaurant, setRestaurant] = useState<RestaurantProps | null>(null);
 
   useEffect(() => {
@@ -79,9 +73,6 @@ const RestaurantDetail: React.FC<PropsDetail> = ({ id }: PropsDetail) => {
         <>
           <Header open={restaurant.hours[0].is_open_now}>
             <div className="containerTitle">
-              <Link className="back" to="/home">
-                <FiChevronLeft size={25} />
-              </Link>
               <h1>{restaurant.name}</h1>
             </div>
             <ReactStars
