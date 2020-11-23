@@ -37,6 +37,7 @@ const RestaurantsList: React.FC = () => {
   const [filterCategory, setFilterCategory] = useState('');
   const [filterOpenNow, setFilterOpenNow] = useState(false);
   const [filterPrice, setFilterPrice] = useState('');
+  const [priceCurrent, setPriceCurrent] = useState('All');
   const [filterClean, setFilerClean] = useState(false);
 
   const wd = window.innerWidth;
@@ -53,6 +54,7 @@ const RestaurantsList: React.FC = () => {
 
   useEffect(() => {
     searchFilters();
+    setPriceSelect();
   }, [filterCategory, filterOpenNow, filterPrice]);
 
   async function handleMoreRestaurants() {
@@ -93,6 +95,28 @@ const RestaurantsList: React.FC = () => {
     setFilerClean(true);
   }
 
+  function setPriceSelect() {
+    switch (filterPrice) {
+      case '':
+        setPriceCurrent('All');
+        break;
+      case '1':
+        setPriceCurrent('$');
+        break;
+      case '2':
+        setPriceCurrent('$$');
+        break;
+      case '3':
+        setPriceCurrent('$$$');
+        break;
+      case '4':
+        setPriceCurrent('$$$$');
+        break;
+      default:
+        'All';
+    }
+  }
+
   function handleCategoryFilter(category: string) {
     setFilterCategory(category);
     setFilerClean(true);
@@ -103,14 +127,6 @@ const RestaurantsList: React.FC = () => {
     setFilterOpenNow(false);
     setFilterPrice('');
     setFilerClean(false);
-  }
-
-  function handleFilterOpenNow() {
-    if (filterOpenNow) {
-      setFilterOpenNow(false);
-      return;
-    }
-    setFilterOpenNow(true);
   }
 
   return (
@@ -132,7 +148,6 @@ const RestaurantsList: React.FC = () => {
                 name="open"
                 id="open"
                 checked={filterOpenNow}
-                defaultChecked={false}
                 onClick={() => {
                   setFilerClean(true);
                   setFilterOpenNow(true);
@@ -143,7 +158,7 @@ const RestaurantsList: React.FC = () => {
           </div>
 
           <div className="dropdownPrice">
-            <span>All</span>
+            <span>{priceCurrent}</span>
             <div className="dropdown-contentPrice">
               <button type="button" onClick={() => handlePriceFilter('')}>
                 All
@@ -164,7 +179,7 @@ const RestaurantsList: React.FC = () => {
           </div>
 
           <div className="dropdown">
-            <span>All</span>
+            <span>{filterCategory === '' ? 'All' : filterCategory}</span>
             <div className="dropdown-content">
               <button type="button" onClick={() => handleCategoryFilter('')}>
                 All

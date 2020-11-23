@@ -105,6 +105,7 @@ export const Filter = styled.div`
   .dropdownPrice {
     position: relative;
     display: inline-block;
+    text-transform: capitalize;
 
     padding: 0px 95px 10px 0px;
     border-bottom: 1px solid #c8c8c8;
