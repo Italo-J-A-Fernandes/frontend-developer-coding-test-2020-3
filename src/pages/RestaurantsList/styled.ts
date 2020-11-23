@@ -5,6 +5,164 @@ interface RestItemProps {
   open: boolean;
 }
 
+interface Filters {
+  nofilter: boolean;
+}
+
+export const ButtonFilter = styled.button<Filters>`
+  padding: 11px 33px;
+  border: 1px solid #002b56;
+  /* ${props => (props.nofilter ? '#002B56' : '#e6e6e6')}; */
+  background-color: #fff;
+  color: #002b56;
+  /* ${props => (props.nofilter ? '#002B56' : '#c8c8c8')}; */
+  pointer-events: #002b56;
+  /* ${props => (props.nofilter ? 'auto' : 'none')}; */
+  transition: all linear 0.2s;
+
+  :hover {
+    background-color: #00326559;
+  }
+
+  > span {
+    font-family: Helvetica-Medium;
+    font-size: 12px;
+    font-size: 0.6rem;
+    letter-spacing: 0.86px;
+    text-align: center;
+    line-height: 16px;
+    text-transform: uppercase;
+  }
+`;
+
+export const Filter = styled.div`
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid #cac7c7;
+  border-bottom: 1px solid #cac7c7;
+  padding: 21px 64px;
+  align-items: center;
+
+  > div {
+    display: flex;
+
+    .checkbox {
+      border-bottom: 1px solid #c8c8c8;
+      margin-right: 33px;
+
+      > label {
+        font-family: Helvetica-Nue;
+        font-size: 16px;
+        font-size: 0.8rem;
+        color: #002b56;
+        letter-spacing: 1px;
+        line-height: 16px;
+      }
+    }
+
+    > span {
+      margin-right: 24px;
+      font-family: Helvetica-Nue;
+      font-size: 16px;
+      font-size: 0.8rem;
+      color: #606060;
+      letter-spacing: 1px;
+      line-height: 24px;
+    }
+
+    > select {
+      margin-right: 33px;
+      font-family: Helvetica-Nue;
+      font-size: 16px;
+      font-size: 0.8rem;
+      color: #002b56;
+      letter-spacing: 1px;
+      line-height: 16px;
+
+      background: #fff;
+      padding-bottom: 8px;
+      border: none;
+      border-bottom: 1px solid #c8c8c8;
+
+      > option {
+        padding: 11px 16px 19px;
+      }
+    }
+
+    #open {
+      margin-right: 8px;
+    }
+
+    label[for='open'] {
+      font-family: Helvetica-Nue;
+      font-size: 16px;
+      font-size: 0.8rem;
+      color: #002b56;
+      letter-spacing: 1px;
+      line-height: 16px;
+      cursor: pointer;
+    }
+  }
+
+  .dropdown,
+  .dropdownPrice {
+    position: relative;
+    display: inline-block;
+
+    padding: 0px 95px 10px 0px;
+    border-bottom: 1px solid #c8c8c8;
+    margin-left: 32px;
+
+    font-family: Helvetica-Nue;
+    font-size: 16px;
+    font-size: 0.8rem;
+    color: #002b56;
+    letter-spacing: 1px;
+    line-height: 16px;
+
+    :hover {
+      cursor: pointer;
+    }
+  }
+
+  .dropdown-content,
+  .dropdown-contentPrice {
+    display: none;
+    position: absolute;
+    background: #fff;
+    width: 100%;
+    box-shadow: 0px 6px 8px 0px rgba(0, 0, 0, 0.2);
+    padding: 16px 0px 19px;
+    margin-top: 11px;
+    z-index: 1;
+
+    > button {
+      display: flex;
+      border: none;
+      font-family: Helvetica-Nue;
+      font-size: 16px;
+      font-size: 0.8rem;
+      color: #000;
+      letter-spacing: 0.5px;
+      line-height: 24px;
+      background-color: #fff;
+      padding: 10px 16px;
+      transition: background-color 0.3s linear, color 0.3s linear;
+
+      :hover {
+        background-color: #002b56;
+        color: #fff;
+      }
+    }
+  }
+
+  .dropdown:hover .dropdown-content,
+  .dropdownPrice:hover .dropdown-contentPrice {
+    display: flex;
+    flex-direction: column;
+  }
+`;
+
 export const Header = styled.header`
   display: flex;
   flex-direction: column;
@@ -320,155 +478,4 @@ a {
     }
   }
 }
-`;
-
-export const Filter = styled.div`
-  display: flex;
-  justify-content: space-between;
-  border-top: 1px solid #cac7c7;
-  border-bottom: 1px solid #cac7c7;
-  padding: 21px 64px;
-  align-items: center;
-
-  > div {
-    display: flex;
-
-    .checkbox {
-      border-bottom: 1px solid #c8c8c8;
-      margin-right: 33px;
-
-      > label {
-        font-family: Helvetica-Nue;
-        font-size: 16px;
-        font-size: 0.8rem;
-        color: #002b56;
-        letter-spacing: 1px;
-        line-height: 16px;
-      }
-    }
-
-    > span {
-      margin-right: 24px;
-      font-family: Helvetica-Nue;
-      font-size: 16px;
-      font-size: 0.8rem;
-      color: #606060;
-      letter-spacing: 1px;
-      line-height: 24px;
-    }
-
-    > select {
-      margin-right: 33px;
-      font-family: Helvetica-Nue;
-      font-size: 16px;
-      font-size: 0.8rem;
-      color: #002b56;
-      letter-spacing: 1px;
-      line-height: 16px;
-
-      background: #fff;
-      padding-bottom: 8px;
-      border: none;
-      border-bottom: 1px solid #c8c8c8;
-
-      > option {
-        padding: 11px 16px 19px;
-      }
-    }
-
-    #open {
-      margin-right: 8px;
-    }
-
-    label[for='open'] {
-      font-family: Helvetica-Nue;
-      font-size: 16px;
-      font-size: 0.8rem;
-      color: #002b56;
-      letter-spacing: 1px;
-      line-height: 16px;
-      cursor: pointer;
-    }
-  }
-
-  .dropdown,
-  .dropdownPrice {
-    position: relative;
-    display: inline-block;
-
-    padding: 0px 95px 10px 0px;
-    border-bottom: 1px solid #c8c8c8;
-    margin-left: 32px;
-
-    font-family: Helvetica-Nue;
-    font-size: 16px;
-    font-size: 0.8rem;
-    color: #002b56;
-    letter-spacing: 1px;
-    line-height: 16px;
-
-    :hover {
-      cursor: pointer;
-    }
-  }
-
-  .dropdown-content,
-  .dropdown-contentPrice {
-    display: none;
-    position: absolute;
-    background: #fff;
-    width: 100%;
-    box-shadow: 0px 6px 8px 0px rgba(0, 0, 0, 0.2);
-    padding: 16px 0px 19px;
-    margin-top: 12px;
-    z-index: 1;
-
-    > button {
-      display: flex;
-      border: none;
-      padding: 10px 0;
-      font-family: Helvetica-Nue;
-      font-size: 16px;
-      font-size: 0.8rem;
-      color: #000;
-      letter-spacing: 0.5px;
-      line-height: 24px;
-      background-color: #fff;
-      padding: 10px 16px;
-      transition: background-color 0.3s linear, color 0.3s linear;
-
-      :hover {
-        background-color: #002b56;
-        color: #fff;
-      }
-    }
-  }
-
-  .dropdown:hover .dropdown-content,
-  .dropdownPrice:hover .dropdown-contentPrice {
-    display: flex;
-    flex-direction: column;
-  }
-`;
-export const ButtonFilter = styled.button`
-  padding: 11px 33px;
-  border: 1px solid ${props => (props.nofilter ? '#002B56' : '#e6e6e6')};
-  background-color: #fff;
-  color: ${props => (props.nofilter ? '#002B56' : '#c8c8c8')};
-  pointer-events: ${props => (props.nofilter ? 'auto' : 'none')};
-  transition: all linear 0.2s;
-
-  :hover {
-    background-color: #00326559;
-  }
-
-  > span {
-    font-family: Helvetica-Medium;
-    font-size: 12px;
-    font-size: 0.6rem;
-    letter-spacing: 0.86px;
-    text-align: center;
-    line-height: 16px;
-    text-transform: uppercase;
-  }
 `;

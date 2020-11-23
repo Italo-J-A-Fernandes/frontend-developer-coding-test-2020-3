@@ -34,6 +34,9 @@ interface Restaurant {
 const RestaurantsList: React.FC = () => {
   const [restaurants, setRestaurants] = useState<Restaurant[] | null>(null);
   const [countRestaurants, setCountRestaurants] = useState(0);
+  const [filterCategory, setFilterCategory] = useState('');
+  const [filterOpenNow, setFilterOpenNow] = useState(false);
+  const [filterPrice, setFilterPrice] = useState('');
 
   const wd = window.innerWidth;
 
@@ -49,10 +52,31 @@ const RestaurantsList: React.FC = () => {
 
   async function handleMoreRestaurants() {
     const total = countRestaurants + 20;
-    client
+    await client
       .query({
         query: LIST_RESTAURANTS,
-        variables: { offset: total },
+        variables: {
+          open_now: filterOpenNow,
+          categories: filterCategory,
+          price: filterPrice,
+          offset: total,
+        },
+      })
+      .then(response => {
+        setRestaurants([...restaurants, ...response.data.search.business]);
+        setCountRestaurants(countRestaurants + 20);
+      });
+  }
+
+  async function searchFilters() {
+    await client
+      .query({
+        query: LIST_RESTAURANTS,
+        variables: {
+          open_now: filterOpenNow,
+          categories: filterCategory,
+          price: filterPrice,
+        },
       })
       .then(response => {
         setRestaurants([...restaurants, ...response.data.search.business]);
@@ -72,7 +96,6 @@ const RestaurantsList: React.FC = () => {
       <Filter>
         <div>
           <span>Filter By:</span>
-
           <div className="checkbox">
             <label htmlFor="open">
               <input type="radio" name="open" id="open" checked={false} />
@@ -83,6 +106,10 @@ const RestaurantsList: React.FC = () => {
           <div className="dropdownPrice">
             <span>All</span>
             <div className="dropdown-contentPrice">
+              <button type="button">All</button>
+              <button type="button">$</button>
+              <button type="button">$$</button>
+              <button type="button">$$$</button>
               <button type="button">$$$$</button>
             </div>
           </div>
@@ -90,12 +117,23 @@ const RestaurantsList: React.FC = () => {
           <div className="dropdown">
             <span>All</span>
             <div className="dropdown-content">
-              <button>Italian</button>
+              <button type="button">All</button>
+              <button type="button">SOUTHERN</button>
+              <button type="button">FRENCH</button>
+              <button type="button">AMERICAN</button>
+              <button type="button">JAPANESE</button>
+              <button type="button">MEXICAN</button>
+              <button type="button">BREAKFAST & BRUNCH</button>
+              <button type="button">SANDWICHES</button>
+              <button type="button">BUFFETS</button>
+              <button type="button">THAI</button>
+              <button type="button">SEAFOOD</button>
+              <button type="button">PIZZA</button>
             </div>
           </div>
         </div>
 
-        <ButtonFilter>
+        <ButtonFilter nofilter={false}>
           <span>clear all</span>
         </ButtonFilter>
       </Filter>

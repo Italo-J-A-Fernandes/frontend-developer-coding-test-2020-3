@@ -1,12 +1,18 @@
 import { gql } from '@apollo/client';
 
 export const LIST_RESTAURANTS = gql`
-  query Filters($categories: String, $price: String, $offset: Int) {
+  query Filters(
+    $categories: String
+    $price: String
+    $offset: Int
+    $open_now: Boolean
+  ) {
     search(
       location: "las-vegas"
       categories: $categories
       price: $price
       offset: $offset
+      open_now: $open_now
     ) {
       business {
         id
