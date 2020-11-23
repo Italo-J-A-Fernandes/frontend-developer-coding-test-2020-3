@@ -41,6 +41,10 @@ const RestaurantsList: React.FC = () => {
   const wd = window.innerWidth;
 
   useEffect(() => {
+    searchFilters();
+  }, [filterCategory, filterOpenNow, filterPrice]);
+
+  useEffect(() => {
     client
       .query({
         query: LIST_RESTAURANTS,
@@ -79,9 +83,13 @@ const RestaurantsList: React.FC = () => {
         },
       })
       .then(response => {
-        setRestaurants([...restaurants, ...response.data.search.business]);
-        setCountRestaurants(countRestaurants + 20);
+        setRestaurants(response.data.search.business);
       });
+  }
+
+  async function handlePriceFilter(valor: string) {
+    setFilterPrice(valor);
+    await searchFilters();
   }
 
   return (
@@ -106,11 +114,21 @@ const RestaurantsList: React.FC = () => {
           <div className="dropdownPrice">
             <span>All</span>
             <div className="dropdown-contentPrice">
-              <button type="button">All</button>
-              <button type="button">$</button>
-              <button type="button">$$</button>
-              <button type="button">$$$</button>
-              <button type="button">$$$$</button>
+              <button type="button" onClick={() => handlePriceFilter('')}>
+                All
+              </button>
+              <button type="button" onClick={() => handlePriceFilter('1')}>
+                $
+              </button>
+              <button type="button" onClick={() => handlePriceFilter('2')}>
+                $$
+              </button>
+              <button type="button" onClick={() => handlePriceFilter('3')}>
+                $$$
+              </button>
+              <button type="button" onClick={() => handlePriceFilter('4')}>
+                $$$$
+              </button>
             </div>
           </div>
 
