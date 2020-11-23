@@ -293,6 +293,11 @@ export const ListRestaurants = styled.ul`
   }
 `;
 
+export const BntCloseModal = styled.div`
+  display: flex;
+  justify-content: flex-end;
+`;
+
 export const RestItem = styled.li<RestItemProps>`
   display: flex;
   flex-direction: column;

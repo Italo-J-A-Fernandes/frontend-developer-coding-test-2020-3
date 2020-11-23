@@ -16,6 +16,13 @@ export default createGlobalStyle`
 
   body, input, button {
     font: 16px Helvetica-Nue, sans-serif;
+
+    .ReactModalPortal{
+      .ReactModal__Overlay{
+        z-index: 1;
+        background-color: rgb(0, 0, 0, 0.75);
+      }
+    }
   }
 
   button {

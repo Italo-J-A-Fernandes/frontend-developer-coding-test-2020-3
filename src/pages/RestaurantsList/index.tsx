@@ -3,6 +3,9 @@ import { Link } from 'react-router-dom';
 import ReactStars from 'react-stars';
 import ReactLoading from 'react-loading';
 
+import Modal from 'react-modal';
+import Detail from '../RestaurantDetail/index';
+
 import client from '../../services/apollo';
 import {
   Header,
@@ -12,6 +15,7 @@ import {
   Filter,
   ButtonFilter,
   Loading,
+  BntCloseModal,
 } from './styled';
 import { LIST_RESTAURANTS } from '../../services/graphql-querys';
 
@@ -42,18 +46,20 @@ const RestaurantsList: React.FC = () => {
   const [priceCurrent, setPriceCurrent] = useState('All');
   const [filterClean, setFilerClean] = useState(false);
   const [isLaoading, setIsLaoading] = useState(true);
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [idDetailRestaurant, setIdReatailRestaurant] = useState('');
 
   const wd = window.innerWidth;
 
-  useEffect(() => {
-    client
-      .query({
-        query: LIST_RESTAURANTS,
-      })
-      .then(response => {
-        setRestaurants(response.data.search.business);
-      });
-  }, []);
+  // useEffect(() => {
+  //   client
+  //     .query({
+  //       query: LIST_RESTAURANTS,
+  //     })
+  //     .then(response => {
+  //       setRestaurants(response.data.search.business);
+  //     });
+  // }, []);
 
   useEffect(() => {
     searchFilters();
@@ -133,6 +139,19 @@ const RestaurantsList: React.FC = () => {
     setFilterOpenNow(false);
     setFilterPrice('');
     setFilerClean(false);
+  }
+
+  function tomarCu(id: string): void {
+    setIdReatailRestaurant(id);
+    openModal();
+  }
+
+  function openModal() {
+    setModalIsOpen(true);
+  }
+
+  function closeModal() {
+    setModalIsOpen(false);
   }
 
   return (
@@ -288,11 +307,14 @@ const RestaurantsList: React.FC = () => {
                         </span>
                       )}
                     </div>
-                    <Link to={`/restaurant-detail/${restaurant.id}`}>
-                      <button type="button">
-                        <span>Learn More</span>
-                      </button>
-                    </Link>
+                    {/* <Link to={`/restaurant-detail/${restaurant.id}`}> */}
+                    <button
+                      type="button"
+                      onClick={() => tomarCu(restaurant.id)}
+                    >
+                      <span>Learn More</span>
+                    </button>
+                    {/* </Link> */}
                   </div>
                 </RestItem>
               ))}
@@ -314,6 +336,19 @@ const RestaurantsList: React.FC = () => {
           </div>
         </ContainerListRest>
       </main>
+      <Modal
+        isOpen={modalIsOpen}
+        onRequestClose={closeModal}
+        contentLabel="Example Modal"
+        ariaHideApp={false}
+      >
+        <BntCloseModal>
+          <button type="button" onClick={closeModal}>
+            close
+          </button>
+        </BntCloseModal>
+        <Detail id={idDetailRestaurant} />
+      </Modal>
     </>
   );
 };

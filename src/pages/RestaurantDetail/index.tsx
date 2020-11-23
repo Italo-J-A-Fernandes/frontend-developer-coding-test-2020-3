@@ -51,20 +51,23 @@ interface RestaurantProps {
   };
 }
 
-const RestaurantDetail: React.FC = () => {
-  const { params } = useRouteMatch<RestaurantParams>();
+interface PropsDetail {
+  id: string;
+}
+const RestaurantDetail: React.FC<PropsDetail> = ({ id }: PropsDetail) => {
+  // const { params } = useRouteMatch<RestaurantParams>();
   const [restaurant, setRestaurant] = useState<RestaurantProps | null>(null);
 
   useEffect(() => {
     client
       .query({
         query: NEW_ONE_RESTAURANT,
-        variables: { idRestaurant: params.restaurant },
+        variables: { idRestaurant: id },
       })
       .then(response => {
         setRestaurant(response.data.business);
       });
-  }, [params.restaurant]);
+  }, [id]);
   return (
     <>
       {!restaurant && (
