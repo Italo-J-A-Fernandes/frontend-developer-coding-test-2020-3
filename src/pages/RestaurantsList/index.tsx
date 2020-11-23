@@ -87,9 +87,12 @@ const RestaurantsList: React.FC = () => {
       });
   }
 
-  async function handlePriceFilter(valor: string) {
+  function handlePriceFilter(valor: string) {
     setFilterPrice(valor);
-    await searchFilters();
+  }
+
+  function handleCategoryFilter(category: string) {
+    setFilterCategory(category);
   }
 
   return (
@@ -135,18 +138,75 @@ const RestaurantsList: React.FC = () => {
           <div className="dropdown">
             <span>All</span>
             <div className="dropdown-content">
-              <button type="button">All</button>
-              <button type="button">SOUTHERN</button>
-              <button type="button">FRENCH</button>
-              <button type="button">AMERICAN</button>
-              <button type="button">JAPANESE</button>
-              <button type="button">MEXICAN</button>
-              <button type="button">BREAKFAST & BRUNCH</button>
-              <button type="button">SANDWICHES</button>
-              <button type="button">BUFFETS</button>
-              <button type="button">THAI</button>
-              <button type="button">SEAFOOD</button>
-              <button type="button">PIZZA</button>
+              <button type="button" onClick={() => handleCategoryFilter('')}>
+                All
+              </button>
+              <button
+                type="button"
+                onClick={() => handleCategoryFilter('southern')}
+              >
+                SOUTHERN
+              </button>
+              <button
+                type="button"
+                onClick={() => handleCategoryFilter('french')}
+              >
+                FRENCH
+              </button>
+              <button
+                type="button"
+                onClick={() => handleCategoryFilter('american')}
+              >
+                AMERICAN
+              </button>
+              <button
+                type="button"
+                onClick={() => handleCategoryFilter('japanese')}
+              >
+                JAPANESE
+              </button>
+              <button
+                type="button"
+                onClick={() => handleCategoryFilter('mexican')}
+              >
+                MEXICAN
+              </button>
+              <button
+                type="button"
+                onClick={() => handleCategoryFilter('breakfast & brunch')}
+              >
+                BREAKFAST
+              </button>
+              <button
+                type="button"
+                onClick={() => handleCategoryFilter('sandwiches')}
+              >
+                SANDWICHES
+              </button>
+              <button
+                type="button"
+                onClick={() => handleCategoryFilter('buffets')}
+              >
+                BUFFETS
+              </button>
+              <button
+                type="button"
+                onClick={() => handleCategoryFilter('thai')}
+              >
+                THAI
+              </button>
+              <button
+                type="button"
+                onClick={() => handleCategoryFilter('seafood')}
+              >
+                SEAFOOD
+              </button>
+              <button
+                type="button"
+                onClick={() => handleCategoryFilter('pizza')}
+              >
+                PIZZA
+              </button>
             </div>
           </div>
         </div>
@@ -186,11 +246,15 @@ const RestaurantsList: React.FC = () => {
                       </span>
                       {wd <= 425 ? (
                         <span className="status">
-                          {restaurant.hours[0].is_open_now ? 'open' : 'closed'}
+                          {restaurant.hours[0] &&
+                          restaurant.hours[0].is_open_now
+                            ? 'open'
+                            : 'closed'}
                         </span>
                       ) : (
                         <span className="status">
-                          {restaurant.hours[0].is_open_now
+                          {restaurant.hours[0] &&
+                          restaurant.hours[0].is_open_now
                             ? 'open now'
                             : 'closed'}
                         </span>
