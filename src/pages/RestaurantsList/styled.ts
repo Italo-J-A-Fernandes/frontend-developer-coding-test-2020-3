@@ -11,13 +11,10 @@ interface Filters {
 
 export const ButtonFilter = styled.button<Filters>`
   padding: 11px 33px;
-  border: 1px solid #002b56;
-  /* ${props => (props.nofilter ? '#002B56' : '#e6e6e6')}; */
+  border: 1px solid ${props => (props.nofilter ? '#002B56' : '#e6e6e6')};
   background-color: #fff;
-  color: #002b56;
-  /* ${props => (props.nofilter ? '#002B56' : '#c8c8c8')}; */
-  pointer-events: #002b56;
-  /* ${props => (props.nofilter ? 'auto' : 'none')}; */
+  color: ${props => (props.nofilter ? '#002B56' : '#c8c8c8')};
+  pointer-events: ${props => (props.nofilter ? 'auto' : 'none')};
   transition: all linear 0.2s;
 
   :hover {

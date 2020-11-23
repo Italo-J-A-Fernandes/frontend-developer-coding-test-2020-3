@@ -37,12 +37,9 @@ const RestaurantsList: React.FC = () => {
   const [filterCategory, setFilterCategory] = useState('');
   const [filterOpenNow, setFilterOpenNow] = useState(false);
   const [filterPrice, setFilterPrice] = useState('');
+  const [filterClean, setFilerClean] = useState(false);
 
   const wd = window.innerWidth;
-
-  useEffect(() => {
-    searchFilters();
-  }, [filterCategory, filterOpenNow, filterPrice]);
 
   useEffect(() => {
     client
@@ -53,6 +50,10 @@ const RestaurantsList: React.FC = () => {
         setRestaurants(response.data.search.business);
       });
   }, []);
+
+  useEffect(() => {
+    searchFilters();
+  }, [filterCategory, filterOpenNow, filterPrice]);
 
   async function handleMoreRestaurants() {
     const total = countRestaurants + 20;
@@ -89,10 +90,27 @@ const RestaurantsList: React.FC = () => {
 
   function handlePriceFilter(valor: string) {
     setFilterPrice(valor);
+    setFilerClean(true);
   }
 
   function handleCategoryFilter(category: string) {
     setFilterCategory(category);
+    setFilerClean(true);
+  }
+
+  function handleCleanFilters() {
+    setFilterCategory('');
+    setFilterOpenNow(false);
+    setFilterPrice('');
+    setFilerClean(false);
+  }
+
+  function handleFilterOpenNow() {
+    if (filterOpenNow) {
+      setFilterOpenNow(false);
+      return;
+    }
+    setFilterOpenNow(true);
   }
 
   return (
@@ -113,8 +131,12 @@ const RestaurantsList: React.FC = () => {
                 type="radio"
                 name="open"
                 id="open"
+                checked={filterOpenNow}
                 defaultChecked={false}
-                onClick={() => setFilterOpenNow(true)}
+                onClick={() => {
+                  setFilerClean(true);
+                  setFilterOpenNow(true);
+                }}
               />
               Open Now
             </label>
@@ -149,75 +171,54 @@ const RestaurantsList: React.FC = () => {
               </button>
               <button
                 type="button"
-                onClick={() => handleCategoryFilter('southern')}
+                onClick={() => handleCategoryFilter('italian')}
               >
-                SOUTHERN
-              </button>
-              <button
-                type="button"
-                onClick={() => handleCategoryFilter('french')}
-              >
-                FRENCH
-              </button>
-              <button
-                type="button"
-                onClick={() => handleCategoryFilter('american')}
-              >
-                AMERICAN
-              </button>
-              <button
-                type="button"
-                onClick={() => handleCategoryFilter('japanese')}
-              >
-                JAPANESE
-              </button>
-              <button
-                type="button"
-                onClick={() => handleCategoryFilter('mexican')}
-              >
-                MEXICAN
-              </button>
-              <button
-                type="button"
-                onClick={() => handleCategoryFilter('breakfast & brunch')}
-              >
-                BREAKFAST
-              </button>
-              <button
-                type="button"
-                onClick={() => handleCategoryFilter('sandwiches')}
-              >
-                SANDWICHES
-              </button>
-              <button
-                type="button"
-                onClick={() => handleCategoryFilter('buffets')}
-              >
-                BUFFETS
-              </button>
-              <button
-                type="button"
-                onClick={() => handleCategoryFilter('thai')}
-              >
-                THAI
+                Italian
               </button>
               <button
                 type="button"
                 onClick={() => handleCategoryFilter('seafood')}
               >
-                SEAFOOD
+                Seafood
               </button>
               <button
                 type="button"
-                onClick={() => handleCategoryFilter('pizza')}
+                onClick={() => handleCategoryFilter('steakhouses')}
               >
-                PIZZA
+                Steakhouses
+              </button>
+              <button
+                type="button"
+                onClick={() => handleCategoryFilter('jpanese')}
+              >
+                Japanese
+              </button>
+              <button
+                type="button"
+                onClick={() => handleCategoryFilter('american')}
+              >
+                American
+              </button>
+              <button
+                type="button"
+                onClick={() => handleCategoryFilter('mexican')}
+              >
+                Mexican
+              </button>
+              <button
+                type="button"
+                onClick={() => handleCategoryFilter('thai')}
+              >
+                Thai
               </button>
             </div>
           </div>
         </div>
 
-        <ButtonFilter nofilter={false}>
+        <ButtonFilter
+          nofilter={filterClean}
+          onClick={() => handleCleanFilters()}
+        >
           <span>clear all</span>
         </ButtonFilter>
       </Filter>
