@@ -20,6 +20,24 @@ export const Header = styled.header<HeaderProps>`
   padding: 36px 64px 48px;
   border-bottom: 2px solid #e6e6e6;
 
+  .containerTitle {
+    display: flex;
+    align-items: center;
+    margin-bottom: 16px;
+
+    .back {
+      text-decoration: none;
+      outline: 0;
+      border-radius: 4px;
+      background: #8888883d;
+      margin-right: 16px;
+
+      svg {
+        color: #4a4a4a3d;
+      }
+    }
+  }
+
   > h1 {
     font-family: Helvetica-Light;
     font-size: 54px;
@@ -199,6 +217,8 @@ export const ListReview = styled.div<ListReviewProps>`
     > span {
       display: flex;
       flex-direction: column;
+      flex-grow: 1;
+      align-items: center;
 
       font-family: Helvetica-Nue;
       font-size: 22px;
@@ -286,4 +306,11 @@ export const Fotos = styled.div<FotosProps>`
   background-image: url(${props => `${props.img}`});
   background-repeat: no-repeat;
   background-size: cover;
+`;
+
+export const Loading = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 `;

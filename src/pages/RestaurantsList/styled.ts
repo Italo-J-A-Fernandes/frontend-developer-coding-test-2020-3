@@ -159,6 +159,19 @@ export const Filter = styled.div`
     display: flex;
     flex-direction: column;
   }
+
+  @media only screen and (max-width: 504px) {
+    display: none;
+  }
+`;
+
+export const Loading = styled.div`
+  display: flex;
+  justify-content: center;
+
+  width: 100%;
+  height: 85px;
+  margin-bottom: 40px;
 `;
 
 export const Header = styled.header`

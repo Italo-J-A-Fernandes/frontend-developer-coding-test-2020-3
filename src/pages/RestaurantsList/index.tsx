@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import ReactStars from 'react-stars';
+import ReactLoading from 'react-loading';
 
 import client from '../../services/apollo';
 import {
@@ -10,6 +11,7 @@ import {
   RestItem,
   Filter,
   ButtonFilter,
+  Loading,
 } from './styled';
 import { LIST_RESTAURANTS } from '../../services/graphql-querys';
 
@@ -39,6 +41,7 @@ const RestaurantsList: React.FC = () => {
   const [filterPrice, setFilterPrice] = useState('');
   const [priceCurrent, setPriceCurrent] = useState('All');
   const [filterClean, setFilerClean] = useState(false);
+  const [isLaoading, setIsLaoading] = useState(true);
 
   const wd = window.innerWidth;
 
@@ -59,6 +62,7 @@ const RestaurantsList: React.FC = () => {
 
   async function handleMoreRestaurants() {
     const total = countRestaurants + 20;
+    setIsLaoading(true);
     await client
       .query({
         query: LIST_RESTAURANTS,
@@ -72,6 +76,7 @@ const RestaurantsList: React.FC = () => {
       .then(response => {
         setRestaurants([...restaurants, ...response.data.search.business]);
         setCountRestaurants(countRestaurants + 20);
+        setIsLaoading(false);
       });
   }
 
@@ -87,6 +92,7 @@ const RestaurantsList: React.FC = () => {
       })
       .then(response => {
         setRestaurants(response.data.search.business);
+        setIsLaoading(false);
       });
   }
 
@@ -113,7 +119,7 @@ const RestaurantsList: React.FC = () => {
         setPriceCurrent('$$$$');
         break;
       default:
-        'All';
+        setPriceCurrent('All');
     }
   }
 
@@ -148,7 +154,7 @@ const RestaurantsList: React.FC = () => {
                 name="open"
                 id="open"
                 checked={filterOpenNow}
-                onClick={() => {
+                onChange={() => {
                   setFilerClean(true);
                   setFilterOpenNow(true);
                 }}
@@ -290,6 +296,16 @@ const RestaurantsList: React.FC = () => {
                   </div>
                 </RestItem>
               ))}
+            {isLaoading && (
+              <Loading>
+                <ReactLoading
+                  type="bars"
+                  color=" #002b56"
+                  height="5%"
+                  width="5%"
+                />
+              </Loading>
+            )}
           </ListRestaurants>
           <div>
             <button type="button" onClick={handleMoreRestaurants}>
