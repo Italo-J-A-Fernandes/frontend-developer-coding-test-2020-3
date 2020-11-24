@@ -31,7 +31,7 @@ Project is running at
 
 ## Optimizations to be performed:
 
-Filter for prices and if it is open now on the client side;
-Handling and displaying errors returned by the server;
-Better componentize the application;
-Layout of mibile filters;
+- Filter for prices and if it is open now on the client side;
+- Handling and displaying errors returned by the server;
+- Better componentize the application;
+- Layout of mibile filters;
