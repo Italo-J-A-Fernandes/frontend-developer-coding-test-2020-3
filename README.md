@@ -6,7 +6,7 @@ Online: https://desafiocev-restaurants.netlify.app/
 ## How to use
 
 Clone the repository:
-> `git clone https://github.com/Italo-J-A-Fernandes/frontend-test.git`
+> `git clone https://github.com/Italo-J-A-Fernandes/frontend-developer-coding-test-2020-3`
 
 Access the cloned
 > `cd frontend-test`
