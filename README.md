@@ -9,7 +9,7 @@ Clone the repository:
 > `git clone https://github.com/Italo-J-A-Fernandes/frontend-developer-coding-test-2020-3`
 
 Access the cloned
-> `cd frontend-test`
+> `cd frontend-developer-coding-test-2020-3`
 
 Create an `.env` file at the root of the project and define the `API_KEY` and `API_MAP` keys.
 
