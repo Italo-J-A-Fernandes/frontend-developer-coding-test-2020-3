@@ -51,16 +51,6 @@ const RestaurantsList: React.FC = () => {
 
   const wd = window.innerWidth;
 
-  // useEffect(() => {
-  //   client
-  //     .query({
-  //       query: LIST_RESTAURANTS,
-  //     })
-  //     .then(response => {
-  //       setRestaurants(response.data.search.business);
-  //     });
-  // }, []);
-
   useEffect(() => {
     searchFilters();
     setPriceSelect();
